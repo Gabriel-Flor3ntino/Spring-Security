@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/users/registrar").permitAll()
                 .anyRequest().authenticated()
             )
-            .httpBasic(withDefaults()); // ✅ CORRETO
+            .httpBasic(withDefaults()); 
 
         return http.build();
     }
