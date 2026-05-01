@@ -7,27 +7,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.projeto.entity.User;
-import br.com.projeto.repository.UserRepository;
+import br.com.projeto.entity.Usuario;
+import br.com.projeto.repository.UsuarioRepository;
 
 @RestController
 public class UserController {
   
   @Autowired
-  private UserRepository userRepository;
+  private UsuarioRepository userRepository;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
 
   @PostMapping("/registrar")
-  public ResponseEntity<String> registerUser(@RequestBody User user) {
+  public ResponseEntity<String> registerUser(@RequestBody Usuario user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     userRepository.save(user);
     return ResponseEntity.ok("Usuário registrado com sucesso");
   }
 
   @GetMapping("/visualizarcadastros") 
-  public List<User> getAllUsers() {
+  public List<Usuario> getAllUsers() {
     return userRepository.findAll();
   }
 }

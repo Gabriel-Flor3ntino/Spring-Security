@@ -1,52 +1,38 @@
 package br.com.projeto.security;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.projeto.entity.User;
+import br.com.projeto.entity.Usuario;
 
-public class CustomUserDetails implements UserDetails{
-  
-  private User user;
+public class CustomUserDetails implements UserDetails {
 
-  public CustomUserDetails(User user) {
-    this.user = user; 
-  }
+    private final Usuario usuario;
 
-  @Override 
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
-  }
+    public CustomUserDetails(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-  @Override
-  public String getPassword() {
-    return user.getPassword();
-  }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.emptyList(); 
+    }
 
-  @Override
-  public String getUsername() {
-    return user.getUsername();
-  }
+    @Override
+    public String getPassword() {
+        return usuario.getPassword();
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+    @Override
+    public String getUsername() {
+        return usuario.getUsername();
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
+    @Override public boolean isAccountNonExpired() { return true; }
+    @Override public boolean isAccountNonLocked() { return true; }
+    @Override public boolean isCredentialsNonExpired() { return true; }
+    @Override public boolean isEnabled() { return true; }
 }
